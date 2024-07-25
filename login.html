@@ -221,12 +221,12 @@ pre,code,kbd,samp
                 </div>
                 <div class="fv-row mb-10">
                     <label class="form-label fs-6 fw-bolder text-dark">Email</label>
-                    <input class="form-control form-control-lg form-control-solid border-light" type="email" wire:model.defer="email" autocomplete="email" value="" required placeholder="name@email.com" />
+                    <input class="form-control form-control-lg form-control-solid border-light" id="email" type="email" wire:model.defer="email" autocomplete="email" value="" required placeholder="name@email.com" />
                                     </div>
                 <div class="fv-row mb-10">
                     <div class="d-flex flex-stack mb-2">
                         <label class="form-label fw-bolder text-dark fs-6 mb-0">Password</label>
-                        <a href="password/reset.html" class="link-info fs-6 fw-bolder">Forgot Password ?</a>
+                        <!-- <a href="password/reset.html" class="link-info fs-6 fw-bolder">Forgot Password ?</a> -->
                     </div>
                     <div class="position-relative" wire:ignore.self>
                         <input class="form-control form-control-lg form-control-solid border-light" type="password" wire:model.defer="password" autocomplete="off" required data-toggle="password" id="password" placeholder="XXXXXXXXX" />
@@ -240,9 +240,9 @@ pre,code,kbd,samp
                     <label class="form-check-label" for="flexCheckDefault">Stayed signed in for 30 days</label>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-lg btn-info btn-block fw-bolder me-3 my-2">
-                        <span wire:loading.remove wire:target="submitLogin">Sign In</span>
-                        <span wire:loading wire:target="submitLogin">Signing In...</span>
+                    <button type="button" onclick="login()" class="btn btn-lg btn-info btn-block fw-bolder me-3 my-2">
+                        <span id="btnState">Sign In</span>
+                        <!-- <span>Signing In...</span> -->
                     </button>
                                                         </div>
             </form>
@@ -261,11 +261,13 @@ pre,code,kbd,samp
   </div>    </div>
   </div>
   
-  
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="publicfile/dashboard/plugins/global/plugins.bundle.js"></script>
   <script src="publicfile/dashboard/js/scripts.bundle.js"></script>
   <script src="publicfile/asset/fonts/fontawesome/js/all.js"></script>
   <script src="publicfile/dashboard/js/custom/general.js"></script>
+  <script src="./register/auth.js"></script>
 </body>
 
 
