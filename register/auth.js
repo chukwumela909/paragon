@@ -48,7 +48,7 @@ function register() {
 
   // Send registration request to the server using Axios
   axios
-    .post("http://localhost:1200/auth/register", data)
+    .post("https://exnesiaserver.onrender.com/auth/register", data)
     .then((response) => {
       // Handle successful registration response
       console.log(response);
@@ -107,7 +107,6 @@ async function login() {
   if (email.includes("@") == false) {
     btn_state.innerHTML = "Sign In";
 
-
     return Swal.fire({
       title: "Incorrect",
       text: "Use a valid email",
@@ -125,7 +124,7 @@ async function login() {
 
   // Send registration request to the server using Axios
   axios
-    .post("http://localhost:1200/auth/login", data)
+    .post("https://exnesiaserver.onrender.com/auth/login", data)
     .then((response) => {
       // Handle successful registration response
       console.log(response);
@@ -141,14 +140,14 @@ async function login() {
 
       // store token in local storage
       localStorage.setItem("access-token", response.data["message"]);
-
+      localStorage.setItem("userID", email)
       // Optionally redirect to another page
       setTimeout(function () {
-        window.location.pathname = "user/index.html";
+        window.location.pathname = "user/dashboard.html";
       }, 2000);
     })
     .catch((error) => {
-        btn_state.innerHTML = "Sign In";
+      btn_state.innerHTML = "Sign In";
       return Swal.fire({
         title: "Error",
         text: error,
@@ -156,6 +155,7 @@ async function login() {
       });
     })
     .finally(() => {
+      btn_state.innerHTML = "Sign In";
       // Hide the loader when the request is complete (success or failure)
     });
 }
