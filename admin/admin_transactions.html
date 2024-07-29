@@ -2003,8 +2003,8 @@
                 <div class="menu-item">
                   <!--begin:Menu link-->
                   <a
-                    class="menu-link active"
-                    href=""
+                    class="menu-link "
+                    href="./admin.html"
                   >
                     <span class="menu-icon"
                       ><!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
@@ -2031,7 +2031,7 @@
                 <div class="menu-item">
                     <!--begin:Menu link-->
                     <a
-                      class="menu-link"
+                      class="menu-link active"
                       href="./admin_transactions.html"
                     >
                       <span class="menu-icon"
@@ -2389,7 +2389,7 @@
               <div
                 class="d-flex flex-column align-items-start justify-content-center flex-wrap me-2"
               >
-                <h1 class="text-dark fw-bolder my-1 fs-2">All Clients</h1>
+                <h1 class="text-dark fw-bolder my-1 fs-2">All Transactions</h1>
                 <ul class="breadcrumb fw-semibold fs-base my-1">
                   <li class="breadcrumb-item text-muted">
                     <a
@@ -2398,7 +2398,7 @@
                       >Admin
                     </a>
                   </li>
-                  <li class="breadcrumb-item text-dark">Clients</li>
+                  <li class="breadcrumb-item text-dark">Transactions</li>
                 </ul>
               </div>
               <div
@@ -2704,15 +2704,14 @@
                                 class="text-start text-dark fw-bolder fs-7 text-uppercase px-7"
                               >
                                 <th></th>
-                                <th class="min-w-150px">Fullname</th>
-                                <th class="min-w-100px">email</th>
-                                <th class="min-w-50px">phone number</th>
-                                <th class="min-w-50px">Balance</th>
-                                <th class="min-w-200px">password</th>
+                                <th class="min-w-150px">Amount</th>
+                                <th class="min-w-100px">Type</th>
+                                <th class="min-w-50px">Status</th>
+                                <th class="min-w-50px">reference id</th>
                               </tr>
                               <!--end::Table row-->
                             </thead>
-                            <tbody class="fw-semibold text-dark fs-6" id="users_table">
+                            <tbody class="fw-semibold text-dark fs-6" id="transactions_table">
                               <!-- <tr
                                 class="cursor-pointer"
                                 id="kt_trx_c7caf724-3583-4e00-8bcd-9667990cefe3_button"
@@ -3310,6 +3309,6 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="admin.js"></script>
+    <script src="admin_transactions.js"></script>
   </body>
 </html>

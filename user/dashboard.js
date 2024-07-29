@@ -218,7 +218,7 @@ async function fetchData() {
                                 <div class="ps-1 text-end">
                                     <p class="fs-6 text-dark mb-0">${new Date(transaction.created).toLocaleString()}</p>
                                     <p class="fs-6 text-gray-800 text-hover-primary mb-0">
-                                        <span class="badge badge-pill badge-info badge-sm">${transaction.status}</span>
+                                        <span class="badge badge-pill ${transaction.status == "completed" ? "badge-success" : transaction.status == "pending" ? "badge-warning" : "badge-danger"} badge-sm">${transaction.status}</span>
                                     </p>
                                 </div>
                             </div>
