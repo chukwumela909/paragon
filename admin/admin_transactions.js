@@ -19,17 +19,15 @@ const statusBtn = document.getElementById("status_btn");
 //     });
 //   });
 
-
-
-async function validateTransaction(status, referenceID) {
-
-
+async function validateTransaction(status, referenceID, amount, email) {
   try {
     const response = await axios.post(
-      "https://exnesiaserver.onrender.com/update_transaction",
+      "http://localhost:1200/update_transaction",
       {
         status: status,
         referenceID: referenceID,
+        amount: amount,
+        useremail: email
       },
       {
         headers: {
@@ -45,12 +43,12 @@ async function validateTransaction(status, referenceID) {
 }
 
 async function fetchTransactions() {
-  var token = localStorage.getItem("access-token");
+  //   var token = localStorage.getItem("access-token");
 
-  if (!token) {
-    window.location.pathname = "/index.html";
-    return;
-  }
+  //   if (!token) {
+  //     window.location.pathname = "/index.html";
+  //     return;
+  //   }
 
   try {
     const response = await axios.get(
@@ -70,7 +68,6 @@ async function fetchTransactions() {
       const row = document.createElement("tr");
       row.classList.add("cursor-pointer");
 
-
       row.innerHTML = `
             <td>
                 <div class="symbol symbol-40px symbol-circle me-5">
@@ -83,33 +80,41 @@ async function fetchTransactions() {
             </td>
             <td>$ ${transaction.amount}</td>
             <td>${transaction.type}</td>
-            <td><span class="badge badge-pill ${transaction.status == "completed" ? "badge-success" : transaction.status == "pending" ? "badge-warning" : "badge-danger"} badge-sm"  id="status_btn"  data-id="${transaction.referenceID}">${transaction.status}</span></td>
+            <td><span class="badge badge-pill ${
+              transaction.status == "completed"
+                ? "badge-success"
+                : transaction.status == "pending"
+                ? "badge-warning"
+                : "badge-danger"
+            } badge-sm"  id="status_btn"  data-id="${
+        transaction.referenceID
+      }">${transaction.status}</span></td>
             <td>${transaction.referenceID}</td>
        
         `;
 
-        row.addEventListener('click', (event) => {
-            const details = event.target.closest('tr');
-            const referenceID = details.querySelector('[data-id]').dataset.id;
-            Swal.fire({
-                    title: "Do you want approved transaction?",
-                    showDenyButton: true,
-                    showCancelButton: true,
-                    confirmButtonText: "Approve",
-                    denyButtonText: `Deny`,
-                  }).then((result) => {
-                    /* Read more about isConfirmed, isDenied below */
-                    if (result.isConfirmed) {
-                      validateTransaction("completed", referenceID);
-                      Swal.fire("completed!", "", );
-                    } else if (result.isDenied) {
-                      validateTransaction("failed", referenceID);
-                
-                      Swal.fire("failed", "", );
-                    }
-                  });
-            console.log(referenceID)
+      row.addEventListener("click", (event) => {
+        const details = event.target.closest("tr");
+        const referenceID = details.querySelector("[data-id]").dataset.id;
+        Swal.fire({
+          title: "Do you want approved transaction?",
+          showDenyButton: true,
+          showCancelButton: true,
+          confirmButtonText: "Approve",
+          denyButtonText: `Deny`,
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            validateTransaction("completed", referenceID, transaction.amount, transaction.useremail);
+            Swal.fire("completed!", "");
+          } else if (result.isDenied) {
+            validateTransaction("failed", referenceID, transaction.amount, transaction.useremail);
+
+            Swal.fire("failed", "");
+          }
         });
+        console.log(referenceID);
+      });
 
       tableBody.appendChild(row);
     });
