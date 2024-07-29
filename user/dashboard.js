@@ -144,7 +144,7 @@ async function fetchData() {
     document.getElementById("user_fullname").innerHTML = `${data.user[0].firstname} ${data.user[0].lastname}`;
     document.getElementById("user_email").innerHTML = `${data.user[0].email}`;
     document.getElementById("user_name").innerHTML = "Hi " + data.user[0].firstname + ",";  
-    document.getElementById("main_balance").innerHTML = `$ ${data.user[0].balance}.00 USD`;
+    document.getElementById("main_balance").innerHTML = `$${data.user[0].balance.toLocaleString('en-US')}.00 USD`;
     const transaction_container = document.getElementById('transaction_details');
 
     const tag_id = document.querySelectorAll(".tag_id");
@@ -208,7 +208,7 @@ async function fetchData() {
                                     </div>
                                     <div class="ps-1">
                                         <p class="fs-6 text-dark text-hover-primary fw-bolder mb-0">
-                                            $${transaction.amount} USD
+                                            $${transaction.amount.toLocaleString('en-US')} USD
                                         </p>
                                         <p class="fs-6 text-gray-800 text-hover-primary mb-0">
                                             ${transaction.type}
@@ -233,5 +233,8 @@ async function fetchData() {
     console.error("Error fetching info:", error.message);
   }
 }
+
+
+
 
 fetchData();
