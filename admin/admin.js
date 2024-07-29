@@ -1,12 +1,7 @@
 const tableBody = document.getElementById('users_table');
 
 async function fetchUsers() {
-    var token = localStorage.getItem("access-token");
-  
-    if (!token) {
-      window.location.pathname = "/index.html";
-      return;
-    }
+
 
   
     try {
